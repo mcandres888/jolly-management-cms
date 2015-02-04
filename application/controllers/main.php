@@ -19,8 +19,70 @@ class Main extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('main');
+        if($this->session->userdata('login_state') == FALSE){
+            if ($this->input->get('action') == "verify") {
+       			$this->login();
+            } else {
+				$this->load->view('login');
+			}
+		}else{
+			$this->load->view('main');
+   		}
+
 	}
+
+	function loadMain ()
+    {
+
+		$this->load->view('main');
+
+	}
+
+	public function template()
+	{
+		$this->load->view('template');
+	}
+
+	public function table()
+	{
+		$this->load->view('table');
+	}
+	public function login()
+	{
+     	$this->load->model('user');
+       	$user = new user();
+
+       	$username = $this->input->post('username');
+       	$password = $this->input->post('password');
+
+       	if ( $user->isPasswordOk($username, $password) ) {
+
+       		$userInfo = $user->getUserInfo($username, $password);
+           	$this->session->set_userdata('username', $username);
+           	$this->session->set_userdata('usertype', $userInfo->type);
+           	$this->session->set_userdata('userid', $userInfo->id);
+           	$this->session->set_userdata('login_state', TRUE);
+          	$this->loadMain();
+       	} else {
+       		$view_data['error'] = "Incorrect Email/Password!";
+           	$this->load->view('login', $view_data);
+
+       	}
+
+
+
+	}
+
+        public function logout()
+        {
+
+                $this->session->sess_destroy();
+                $this->session->set_userdata('login_state', FALSE);
+                $this->session->set_userdata('username', "");
+                $this->index();
+        }
+
+
 }
 
 /* End of file welcome.php */
