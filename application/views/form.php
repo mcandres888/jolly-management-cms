@@ -16,36 +16,42 @@
    		<div class="col-lg-12">
      		<div class="panel panel-default">
        		<div class="panel-heading">
-         		<?=$desc?> &nbsp&nbsp<a href='<?=$create_data?>' class='fa fa-plus'> Create </a>
+         		<?=$desc?> 
          	</div>
          	<!-- /.panel-heading -->
         	<div class="panel-body">
-         		<div class="dataTable_wrapper">
-           		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-             		<thead>
-               		<tr>
-    							<?php foreach ($desc_headers as $header) { 
-                 					echo "<th>$header</th>";
-    										} 
-                   			echo "<th>Actions</th>";
-									?>
-                 	</tr>
-            		</thead>
-              	<tbody>
-								<?php 
-									foreach ($table_data['rows'] as $row) { 
-                 		echo '<tr class="odd gradeX">';
-										foreach ($headers as $header) { 
-                   		echo "<td>" . $row->$header . "</td>";
-    								} 
-                   	echo "<td><a href='" . $delete_data ."/" . $row->id . "' class='fa fa-times'/>";
-                   	echo "</a>&nbsp&nbsp&nbsp<a href='". $edit_data . "/" . $row->id ."' class='fa fa-edit'/></td>";
-                   	echo '</tr>';
+						<div class="col-lg-6">
+ 							<form role="form" method="post" action="<?=$submit_data?>">
+
+								<?php
+
+									foreach ($form_data as $fdata) {
+										echo "<div class='form-group'>";
+										echo "<label>" . $fdata['title'] ."</label>";
+
+										if ($fdata['type'] == 'number') {
+ 											echo "<input type='number' name='" .
+												 $fdata['name'] .
+													"' class='form-control' min='0' step='1'>";
+										}else if ( $fdata['type'] == 'textarea') {
+ 											echo "<textarea name='" .
+												 $fdata['name'] .
+													"' class='form-control' rows='5'> </textarea>";
+							
+										}else {
+ 											echo "<input name='" . $fdata['name'] ."' class='form-control'>";
+										}
+                  	echo "<p class='help-block'>" . $fdata['desc']. "</p>";
+
+
+         						echo "</div>";
 									}
 								?>
-		
-   							</tbody>
-           	</table>
+								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="reset" class="btn btn-default">Reset</button>
+
+							</form>
+         		</div>
          	</div>
          	<!-- /.table-responsive -->
 

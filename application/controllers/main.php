@@ -43,6 +43,65 @@ class Main extends CI_Controller {
 		$this->load->view('template');
 	}
 
+
+	public function jobs()
+	{
+  	$this->load->model('job');
+   	$job = new job();
+		$this->load->view('table', $job->get_table_view_data());
+	}
+
+
+	public function create_jobs()
+	{
+
+  	$this->load->model('job');
+   	$job = new job();
+		$this->load->view('form', $job->get_create_view_data());
+	}
+
+	public function edit_jobs( $id )
+	{
+  	$this->load->model('job');
+   	$job = new job();
+		$this->load->view('edit_form', $job->get_edit_view_data($id));
+	}
+
+	public function delete_jobs( $id )
+	{
+  	$this->load->model('job');
+   	$job = new job();
+		$job->id = $id;
+		$job->delete();
+		$this->jobs();
+	}
+
+	public function add_jobs()
+	{
+  	$this->load->model('job');
+   	$job = new job();
+		$job->add_thru_post();
+		$this->jobs();
+	}
+
+	public function update_jobs( $id )
+	{
+  	$this->load->model('job');
+   	$job = new job();
+		$job->update_thru_post( $id );
+		$this->jobs();
+	}
+
+
+
+
+
+	public function form()
+	{
+		$this->load->view('form');
+	}
+
+
 	public function table()
 	{
 		$this->load->view('table');
@@ -73,14 +132,223 @@ class Main extends CI_Controller {
 
 	}
 
-        public function logout()
-        {
+	public function logout()
+	{
+		$this->session->sess_destroy();
+   	$this->session->set_userdata('login_state', FALSE);
+   	$this->session->set_userdata('username', "");
+   	$this->index();
+	}
 
-                $this->session->sess_destroy();
-                $this->session->set_userdata('login_state', FALSE);
-                $this->session->set_userdata('username', "");
-                $this->index();
-        }
+
+
+  ####### BRANCH ########
+
+  function branches () {
+    $this->load->model('Branch');
+    $Branch = new Branch();
+    $this->load->view('table', $Branch->get_table_view_data());
+  }
+  function create_branches () {
+    $this->load->model('Branch');
+    $Branch = new Branch();
+    $this->load->view('form', $Branch->get_create_view_data());
+  }
+  function edit_branches ($id) {
+    $this->load->model('Branch');
+    $Branch = new Branch();
+    $this->load->view('edit_form', $Branch->get_edit_view_data($id));
+  }
+
+  function delete_branches ($id) {
+    $this->load->model('Branch');
+    $Branch = new Branch();
+    $Branch->id  = $id;
+    $Branch->delete();
+    $this->branches();
+  }
+  function add_branches () {
+    $this->load->model('Branch');
+    $Branch = new Branch();
+    $Branch->add_thru_post();
+    $this->branches();
+  }
+  function update_branches ($id) {
+    $this->load->model('Branch');
+    $Branch = new Branch();
+    $Branch->update_thru_post($id);
+    $this->branches();
+  }
+  ####### END ########
+
+
+
+ ####### Employees ########
+
+  function employees () {
+    $this->load->model('Employee');
+    $Employee = new Employee();
+    $this->load->view('table', $Employee->get_table_view_data());
+  }
+  function create_employees () {
+    $this->load->model('Employee');
+    $Employee = new Employee();
+    $this->load->view('form', $Employee->get_create_view_data());
+  }
+  function edit_employees ($id) {
+    $this->load->model('Employee');
+    $Employee = new Employee();
+    $this->load->view('edit_form', $Employee->get_edit_view_data($id));
+  }
+
+
+
+  function delete_employees ($id) {
+    $this->load->model('Employee');
+    $Employee = new Employee();
+    $Employee->id  = $id;
+    $Employee->delete();
+    $this->employees();
+  }
+  function add_employees () {
+    $this->load->model('Employee');
+    $Employee = new Employee();
+    $Employee->add_thru_post();
+    $this->employees();
+  }
+  function update_employees ($id) {
+    $this->load->model('Employee');
+    $Employee = new Employee();
+    $Employee->update_thru_post($id);
+    $this->employees();
+  }
+  ####### END ########
+
+
+  ####### SERVICES ########
+
+  function services () {
+    $this->load->model('Service');
+    $Service = new Service();
+    $this->load->view('table', $Service->get_table_view_data());
+  }
+  function create_services () {
+    $this->load->model('Service');
+    $Service = new Service();
+    $this->load->view('form', $Service->get_create_view_data());
+  }
+  function edit_services ($id) {
+    $this->load->model('Service');
+    $Service = new Service();
+    $this->load->view('edit_form', $Service->get_edit_view_data($id));
+  }
+
+
+  function delete_services ($id) {
+    $this->load->model('Service');
+    $Service = new Service();
+    $Service->id  = $id;
+    $Service->delete();
+    $this->services();
+  }
+  function add_services () {
+    $this->load->model('Service');
+    $Service = new Service();
+    $Service->add_thru_post();
+    $this->services();
+  }
+  function update_services ($id) {
+    $this->load->model('Service');
+    $Service = new Service();
+    $Service->update_thru_post($id);
+    $this->services();
+  }
+  ####### END ########
+
+
+  ####### Specialization ########
+
+  function specializations () {
+    $this->load->model('Specialization');
+    $Specialization = new Specialization();
+    $this->load->view('table', $Specialization->get_table_view_data());
+  }
+  function create_specializations () {
+    $this->load->model('Specialization');
+    $Specialization = new Specialization();
+    $this->load->view('form', $Specialization->get_create_view_data());
+  }
+  function edit_specializations ($id) {
+    $this->load->model('Specialization');
+    $Specialization = new Specialization();
+    $this->load->view('edit_form', $Specialization->get_edit_view_data($id));
+  }
+
+
+  function delete_specializations ($id) {
+    $this->load->model('Specialization');
+    $Specialization = new Specialization();
+    $Specialization->id  = $id;
+    $Specialization->delete();
+    $this->specializations();
+  }
+  function add_specializations () {
+    $this->load->model('Specialization');
+    $Specialization = new Specialization();
+    $Specialization->add_thru_post();
+    $this->specializations();
+  }
+  function update_specializations ($id) {
+    $this->load->model('Specialization');
+    $Specialization = new Specialization();
+    $Specialization->update_thru_post($id);
+    $this->specializations();
+  }
+  ####### END ########
+
+
+
+  ####### CLIENTS ########
+
+  function clients () {
+    $this->load->model('Client');
+    $Client = new Client();
+    $this->load->view('table', $Client->get_table_view_data());
+  }
+  function create_clients () {
+    $this->load->model('Client');
+    $Client = new Client();
+    $this->load->view('form', $Client->get_create_view_data());
+  }
+  function edit_clients ($id) {
+    $this->load->model('Client');
+    $Client = new Client();
+    $this->load->view('edit_form', $Client->get_edit_view_data($id));
+  }
+
+
+  function delete_clients ($id) {
+    $this->load->model('Client');
+    $Client = new Client();
+    $Client->id  = $id;
+    $Client->delete();
+    $this->clients();
+  }
+  function add_clients () {
+    $this->load->model('Client');
+    $Client = new Client();
+    $Client->add_thru_post();
+    $this->clients();
+  }
+  function update_clients ($id) {
+    $this->load->model('Client');
+    $Client = new Client();
+    $Client->update_thru_post($id);
+    $this->clients();
+  }
+  ####### END ########
+
+
 
 
 }
