@@ -22,9 +22,14 @@
 #tablename = "specializations"
 #vars = ["id", "description"]
 
-className = "Client"
-tablename = "clients"
-vars = ["id", "caption", "image_url"]
+#className = "Client"
+#tablename = "clients"
+#vars = ["id", "caption", "image_url"]
+
+className = "Message"
+tablename = "messages"
+vars = ["id", "email", "full_name", "message", 
+				"phone_number", "mobile_number","fax_number" ]
 
 
 

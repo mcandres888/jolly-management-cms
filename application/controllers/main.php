@@ -349,6 +349,49 @@ class Main extends CI_Controller {
   ####### END ########
 
 
+  ####### MESSAGE ########
+
+  function messages () {
+    $this->load->model('Message');
+    $Message = new Message();
+    $this->load->view('table', $Message->get_table_view_data());
+  }
+  function create_messages () {
+    $this->load->model('Message');
+    $Message = new Message();
+    $this->load->view('form', $Message->get_create_view_data());
+  }
+  function edit_messages ($id) {
+    $this->load->model('Message');
+    $Message = new Message();
+    $this->load->view('edit_form', $Message->get_edit_view_data($id));
+  }
+
+  function delete_messages ($id) {
+    $this->load->model('Message');
+    $Message = new Message();
+    $Message->id  = $id;
+    $Message->delete();
+    $this->messages();
+  }
+  function add_messages () {
+    $this->load->model('Message');
+    $Message = new Message();
+    $Message->add_thru_post();
+    $this->messages();
+  }
+  function update_messages ($id) {
+    $this->load->model('Message');
+    $Message = new Message();
+    $Message->update_thru_post($id);
+    $this->messages();
+  }
+  ####### END ########
+
+
+
+
+
 
 
 }
