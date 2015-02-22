@@ -9,7 +9,7 @@
    	<!-- /.nav-second-level -->
 		</li>
    	<li>
-   		<a href="<?=site_url()?>/main/jobs"><i class="fa fa-rocket fa-fw"></i>Job Oppurtunities</a>
+   		<a href="<?=site_url()?>/main/jobs"><i class="fa fa-rocket fa-fw"></i>Job Opportunities</a>
    	</li>
    	<li>
    		<a href="<?=site_url()?>/main/branches"><i class="fa fa-arrows-alt fa-fw"></i>  Branches</a>

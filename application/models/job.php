@@ -24,7 +24,7 @@ class Job extends CI_Model {
 
 		$view_data = array();
 		$view_data['title'] = "Jobs";
-    $view_data['desc'] = "Job Oppurtunities";
+    $view_data['desc'] = "Job Opportunities";
     $view_data['headers'] = $this->get_table_headers();
     $view_data['desc_headers'] = $this->get_table_desc_headers();
     $view_data['table_data'] = $this->get_all_data();
@@ -73,7 +73,7 @@ class Job extends CI_Model {
 			array("title" => "Salary"  , "name" => "salary" , "desc" => "", "type" =>"text" ),
 			array("title" => "Requirements", "name" => "requirement" , "desc" => "" , "type" =>"textarea"),
 			array("title" => "Email", "name" => "email" , "desc" => "", "type" =>"text" ),
-			array("title" => "Priority", "name" => "priority" , "desc" => "Enter a number. Higher number means it will be on the top list.", "type" =>"number" ),
+			array("title" => "Remain at Top", "name" => "priority" , "desc" => "if blank/zero default timebased sorting. If 1, it will remain on top.", "type" =>"number" ),
 		);
 		return $data;
 
@@ -200,7 +200,7 @@ class Job extends CI_Model {
     $page_start = $page * 5;
 
 
- 	  $query = $this->caller->db->query("SELECT * FROM $this->table_name LIMIT $page_start, 5");
+ 	  $query = $this->caller->db->query("SELECT * FROM $this->table_name ORDER BY priority DESC LIMIT $page_start, 5 ");
     foreach ($query->result() as $row)
     {
       $data['rows'][] = $row;
