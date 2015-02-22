@@ -26,7 +26,8 @@ class Main extends CI_Controller {
 				$this->load->view('login');
 			}
 		}else{
-			$this->load->view('main');
+			//$this->load->view('main');
+      $this->jobs();
    		}
 
 	}

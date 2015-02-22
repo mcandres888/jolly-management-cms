@@ -187,14 +187,42 @@ class Job extends CI_Model {
 		$this->delete(); 
 	}
 
-	function get_all_data() {
+
+	function get_page_data( $page ) {
 		$data = array();
 		
  	  $query = $this->caller->db->query("SELECT * FROM $this->table_name");
     $total = $this->caller->db->affected_rows();
-    $result['total'] = $total;
+
+    $data['total'] = $total;
+    $data['pages'] = $total / 5;
+    $data['rows'] = array();
+    $page_start = $page * 5;
+
+
+ 	  $query = $this->caller->db->query("SELECT * FROM $this->table_name LIMIT $page_start, 5");
+    foreach ($query->result() as $row)
+    {
+      $data['rows'][] = $row;
+    }
+
+		return $data;
+	}
+
+
+
+	function get_all_data( ) {
+		$data = array();
+		
+ 	  $query = $this->caller->db->query("SELECT * FROM $this->table_name");
+    $total = $this->caller->db->affected_rows();
+
+    $data['total'] = $total;
+    $data['pages'] = $total / 5;
     $data['rows'] = array();
 
+
+ 	  $query = $this->caller->db->query("SELECT * FROM $this->table_name");
     foreach ($query->result() as $row)
     {
       $data['rows'][] = $row;

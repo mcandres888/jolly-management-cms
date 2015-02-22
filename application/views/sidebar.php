@@ -9,36 +9,31 @@
    	<!-- /.nav-second-level -->
 		</li>
    	<li>
-			<a href="tables.html"><i class="fa fa-table fa-fw"></i> Website Info<span class="fa arrow"></span></a>
-   	<ul class="nav nav-second-level">
-   	<li>
-   		<a href="<?=site_url()?>/main/branches">Branches</a>
+   		<a href="<?=site_url()?>/main/jobs"><i class="fa fa-rocket fa-fw"></i>Job Oppurtunities</a>
    	</li>
    	<li>
-   		<a href="<?=site_url()?>/main/jobs">Job Oppurtunities</a>
+   		<a href="<?=site_url()?>/main/branches"><i class="fa fa-arrows-alt fa-fw"></i>  Branches</a>
   	</li>
    	<li>
-   		<a href="<?=site_url()?>/main/employees">Employees</a>
+   		<a href="<?=site_url()?>/main/employees"><i class="fa fa-group fa-fw"></i>Employees</a>
   	</li>
 
    	<li>
-   		<a href="<?=site_url()?>/main/services">Our Services</a>
+   		<a href="<?=site_url()?>/main/services"><i class="fa fa-truck fa-fw"></i>Our Services</a>
   	</li>
 
    	<li>
-   		<a href="<?=site_url()?>/main/specializations">Our Specialization</a>
+   		<a href="<?=site_url()?>/main/specializations"><i class="fa fa-flask fa-fw"></i>Our Specialization</a>
   	</li>
 
    	<li>
-   		<a href="<?=site_url()?>/main/clients">Our Clients</a>
+   		<a href="<?=site_url()?>/main/clients"><i class="fa fa-smile-o fa-fw"></i>Our Clients</a>
   	</li>
-   	</ul>
    	<!-- /.nav-second-level -->
 
 
 
 
-		</li>
    	<li>
    		<a href="<?=site_url()?>/main/messages"><i class="fa fa-envelope-o fa-fw"></i> Messages</a>
   	</li>
