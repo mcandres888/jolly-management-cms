@@ -35,7 +35,8 @@ class Main extends CI_Controller {
 	function loadMain ()
     {
 
-		$this->load->view('main');
+		//$this->load->view('main');
+      $this->jobs();
 
 	}
 

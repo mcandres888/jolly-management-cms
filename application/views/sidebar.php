@@ -38,9 +38,11 @@
    		<a href="<?=site_url()?>/main/messages"><i class="fa fa-envelope-o fa-fw"></i> Messages</a>
   	</li>
 	
+<!--
  		<li>
    		<a href="forms.html"><i class="fa fa-user fa-fw"></i> Users</a>
   	</li>
+-->
 
    	</ul>
 	</div>
