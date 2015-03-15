@@ -21,7 +21,11 @@
          	<!-- /.panel-heading -->
         	<div class="panel-body">
 						<div class="col-lg-6">
- 							<form role="form" method="post" action="<?=$submit_data?>">
+              <? if ($title == 'Create Client') { ?>
+ 								<form role="form" method="post" action="<?=$submit_data?>" enctype="multipart/form-data">
+              <? } else { ?>
+ 								<form role="form" method="post" action="<?=$submit_data?>">
+              <? } ?>
 
 								<?php
 
@@ -37,6 +41,11 @@
  											echo "<textarea name='" .
 												 $fdata['name'] .
 													"' class='form-control' rows='5'> </textarea>";
+							
+										}else if ( $fdata['type'] == 'file') {
+ 											echo "<input type='file' name='" .
+												 $fdata['name'] .
+													"' class='form-control'> </input>";
 							
 										}else {
  											echo "<input name='" . $fdata['name'] ."' class='form-control'>";

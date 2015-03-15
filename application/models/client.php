@@ -87,12 +87,39 @@ class Client extends CI_Model {
 	}
 
 	function add_thru_post() {
-		// get the information first and update the model 
-		$this->caption = $this->caller->input->post('caption'); 
-		$this->image_url = $this->caller->input->post('image_url'); 
-		// then add the instance of that model 
-		$id = $this->add(); 
-		return $id; 
+
+		$config = array(
+			'upload_path' => "/Users/mcandres/Documents/SERVER_APPS/MAMP/htdocs/jolly-management-cms/uploads/",
+			'allowed_types' => "gif|jpg|png|jpeg|pdf",
+			'overwrite' => TRUE,
+			'max_size' => "4096000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+			'max_height' => "600",
+			'max_width' => "1200"
+		);
+		$this->caller->load->library('upload', $config);
+
+
+		if($this->caller->upload->do_upload()) {
+			$data = array('upload_data' => $this->caller->upload->data());
+			// get the information first and update the model 
+			$this->caption = $this->caller->input->post('caption'); 
+			//$this->image_url = $this->caller->input->post('image_url'); 
+      $image_url = "";
+      foreach ($data as $item => $value) {
+      	$image_url = base_url() . "uploads/" . $value['file_name'];
+			}
+      echo $image_url;
+			$this->image_url = $image_url;
+			// then add the instance of that model 
+			$id = $this->add(); 
+			return $id; 
+		} else {
+			$error = array('error' => $this->caller->upload->display_errors());
+      print_r ($error);
+			//$this->load->view('file_view', $error);
+      return 0;
+		}
+
 	}
 
 	function update_thru_post( $id ) {
@@ -145,7 +172,7 @@ class Client extends CI_Model {
 	function get_form_data() {
 		$data = array( 
 			array('title' => 'caption', 'name'=> 'caption', 'desc'=>'', 'type'=>'text'), 
-			array('title' => 'image_url', 'name'=> 'image_url', 'desc'=>'', 'type'=>'text'), 
+			array('title' => 'Upload Image (1200x315)', 'name'=> 'userfile', 'desc'=>'', 'type'=>'file'), 
 		) ;
 		return $data; 
 	}
